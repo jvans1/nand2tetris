@@ -11,7 +11,7 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.  
 // Put your code here.
-@24575
+@24576
 D=A
 @endpix
 M=D
@@ -21,11 +21,20 @@ D=A
 @startpix
 M=D
 
+@0
+D=A
+@previnput
+M=D
+
 (LISTEN)
   @KBD
   D=M
+  @currinput
+  M=D
+  @previnput
+  D=M-D
   @DRAW
-  D;JGT
+  D;JNE
   @LISTEN
   0;JMP
 
@@ -49,6 +58,10 @@ M=D
   0;JMP
 
 (END)
+  @currinput
+  D=M
+  @previnput
+  M=D
   @SCREEN
   D=A
   @startpix
