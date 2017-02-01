@@ -9,8 +9,7 @@
 // the screen should remain fully black as long as the key is pressed. 
 // When no key is pressed, the program clears the screen, i.e. writes
 // "white" in every pixel;
-// the screen should remain fully clear as long as no key is pressed.
-
+// the screen should remain fully clear as long as no key is pressed.  
 // Put your code here.
 @24576
 D=A
@@ -19,28 +18,40 @@ M=D
 
 @SCREEN
 D=A
-@i
+@startpix
 M=D
 
-(LOOP)
+(LISTEN)
+  @KBD
+  D=M
+  @DRAW
+  D;JGT
+  @LISTEN
+  0;JMP
+
+(DRAW)
   @endpix
   D=M
-  @i
+  @startpix
   D=D-M
   @END
   D;JEQ
-  @i
+  @startpix
   D=M
   A=D
   M=!M
   @1
   D=A
-  @i
+  @startpix
   D=D+M
   M=D
-  @LOOP
+  @DRAW
   0;JMP
 
 (END)
-  @END
+  @SCREEN
+  D=M
+  @startpix
+  M=D
+  @LISTEN
   0;JMP
