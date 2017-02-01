@@ -11,7 +11,7 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.  
 // Put your code here.
-@24576
+@24575
 D=A
 @endpix
 M=D
@@ -50,7 +50,7 @@ M=D
 
 (END)
   @SCREEN
-  D=M
+  D=A
   @startpix
   M=D
   @LISTEN
